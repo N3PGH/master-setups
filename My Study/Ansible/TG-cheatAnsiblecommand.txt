@@ -1,0 +1,70 @@
+
+
+#yum install git python python-level python-pip openssl ansible -y
+#vi /etc/ansible/hosts  {paste private IP* of nodes in host file}
+#vi /etc/ansible/ansible.cfg
+      >> { uncommented  remove #}
+         # inventory = /etc/ansible/hosts
+         #sudo -user = root
+# vi /etc/ssh/sshd_config 
+   >>{ uncommented  remove #}
+        #permitRootLogin yes
+        #PasswordAuthentication yes
+        {commented   add #}
+        PasswordAuthentication no
+     :wq!
+
+#adduser ansible
+#passwd ansible
+# su - ansible
+  visudo
+   >> root ALL=(ALL) ALL
+        ansible ALL=(ALL) NOPASSWD: ALL
+    :wq!
+$ sudo yum install httpd -y
+$ ssh 172.31.41.240 
+$ ssh 172.31.42.228
+------------------------SSH KEYGEN
+$ ssh - keygen
+  cd .ssh/ 
+$ ssh-copy-id ansible@172.31.42.228
+$ ssh-copy-id ansible@172.32.42.240
+
+--------------------------HOST PATTERNS
+# ansible all --list-hosts
+$ ansible <groupname>[0] --list-hosts
+				   { [0] =picks first m/c  of group
+                                     [1] = picks second m/c of group 
+                                     [-1] = picks last /c of group
+                                     [0:1] = pisks first 2 m/c of group
+                                     [2:5] = picks 3,4,5,6 m.c of group }
+$ ansible group1:group2 --list-hosts
+
+-------------------------AD HOC
+$ ansible demo -a "ls" 
+$ ansible demo[0] -a "touch filez"
+$ ansible all -a "touch file4
+$ ansible demo -a "ls -al"
+$ ansible demo -a "sudo yum install httpd -y"
+
+-------------------------MODULES
+$ ansible demo -b -m yum -a "pkg=httpd state=predent"
+$ ansible demo -b -m yum -a "pkg=httpd state=latest"
+$ ansible demo -b -m yum -a "pkg=httpd state=absent"
+$ ansible demo -b -m user -a "name = raj"
+$ ansible demo -b -m copy -a "src=file4 dest=/tmp"
+$ ansible demo -b -m service -a "name=httpd state=started"
+$ ansible  demo -m setup
+$ ansible demo -m setup -a "filter=*ipv4*"
+
+-------------------------PLAYBOOK
+$ ansible-playbook loops.yml
+
+-------------------------ENCRYPTION AES256
+$ ansible-vault create vault.yml
+$ ansible-vault edit vault.yml
+$ ansible-vault rekey vault.yml
+$ ansible-vault rekey vault.yml
+$ ansible-vault decrypt target.yml
+--------------------------
+

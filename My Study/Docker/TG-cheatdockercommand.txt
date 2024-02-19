@@ -1,0 +1,52 @@
+
+
+
+#docker built -t <imagename>
+#docker run -it --name <containername> <imagename> /bin/bash
+#docker exec -it <conatinername> /bin/bash 
+#docker stop $(docker ps -a -q)
+#docker rm $(docker ps -a -q)
+#docker rmi -f $(docker image -q)
+
+
+------------------VOLUME
+dockerdile:
+	>FROM ubuntu
+     	 VOLUME ["/myvloume"]
+------------------
+#docker built -t <myimage> .
+#docker run -it --name container1 myimage /bin/bash
+#docker run -it --name container2 --privileged=true --volume-from container1
+   		ubuntu /bin/bash
+-----------------
+#docker run -it --name container3 -v /volume2 ubuntu /bin/bash
+#docker run -it --name container4 --privileged=true --volume-from container3
+    ubuntu /bin/bash
+-----------------
+#docker run -it --name hostcont -v /home/ec2-user/testdir
+  --privileged==true ubuntu /bin/bash
+-----------------VOLUME
+#docker volume ls
+#docker volume create <volumename>
+#docker volume rm <volumename>
+#docker volume prune  {to remove unused docker volume}
+#docker volume inspect <volumename>
+#docker container inspect <containername>
+
+----------------PORT EXPOSE
+#docker ps
+#docker port <containername>
+
+[container]docker run -td --name myjenkins -p 8080:8080 jenkins
+
+---------------DOCKER HUB
+
+#docker commit container1 image1
+#docker login
+#docker  tag image1 dockerid/newimage
+#docker push dockerid/newimage
+
+#docker pull dockerid/newimage
+#docker run -it --name mycon dockerid/newimage /bin/bash
+-----------------
+

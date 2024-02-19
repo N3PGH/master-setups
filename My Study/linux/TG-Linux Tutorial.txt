@@ -1,0 +1,141 @@
+
+linux command
+
+[ec2-user]#Ls = list command
+   -a = list including hidden files
+   -l = detailed list with permission and time stamp
+[ec2-user]#stat = diplay file properties
+[ec2-user]#head = display first 10 line of file
+[ec2-user]#less = display single page of file
+[ec2-user]#more = display all pages of file
+[ec2-user]#tail = display last 10 line of file
+
+[ec2-user]#cat > file = cat file editor 
+[ec2-user]#cat >> file
+[ec2-user]#cat file1 file2 > file3
+
+[ec2-user]#touch file
+[ec2-user]#touch file1 file 2 file3 
+    -a = change acess time stamp of file
+    -m = change modified time stamp of file
+
+[ec2-user]#vi file = vi file editor 
+    i =insert
+    esc = escape
+    :wq! = force save & quit
+    :w! =  force save
+    :q! = force quit no save
+    
+ctr+L = clear screen
+
+[ec2-user]$sudo su = gain superuser privilage
+
+[ec2-user]#mkdir dr1 = make directory dr1
+[ec2-user]#mkdir dr1/dr2/dr3
+
+[/dr2]#cd ../../ = change directory backward 2 steps
+[ec2-user]#cd dr1/dr2 = change directory forward 2 steps
+
+[ec2-user]#pwd = print current working directory 
+
+?copy/move file?
+cp file1 file2 = copy file1 data to file2
+mv file1 dr2 = move file1 to dr2
+
+
+rmdir dr1= remove directory dr1 
+   -p = remove both parent & child directory
+   -pv = remove both parent & child directory along with verbose
+rm -rf = remove files
+   -rp
+   -r  
+_____________________________________________________
+hostname = display Machine Details
+       -i = display IP address
+ifconfig =
+free -m {=phisical memory}
+        -g
+vmstat -t {=memory status}
+             -a
+sar -u  2 6 {=cpu utilization every 2sec for 6times}
+      -v 1 3  
+
+
+-------------------------------------------------------------------
+/home = home directory for user
+/root = home directory for rootuser
+/boot = directory for linux boot file
+/etc = directory for configuration files
+/usr = directory for default installed pkg
+/bin = directory for commands used by user
+/sbin = directory for commands used by rootuser only
+/opt = directory for optional pkg
+/dev = directory for essential device files; terminal devies,usb, other attached device
+______________________________________________________________
+yum = yellowdog updater modifier
+  - update 
+  - install
+  -remove
+
+[ec2-user]#echo "hello" = print hello on all machine
+ 
+[ec2-user]#which = to check status of installation pakge}
+[ec2-user]#whomi = show current user
+[ec2-user]#tree
+[ec2-user]#grep = to search for 
+
+httpd= hyper text transfer protocol daimond -apache server
+
+ln = hardlink
+ln -s = softlink
+tar = archieve
+    -xvf = extract,verbose,forcefully
+    -cvf = create,verbose,forcefully
+gzip = compress file size
+ 
+[ec2-user]#wget <url> = to download file/pkg form web 
+
+---------------------------------------------------------------
+useradd <username
+cat /etc/passwd
+groupadd <groupname>
+cat /etc/group
+gpasswd -a <username> <groupname>
+gpasswd -m <username1,username2,username3> <groupname>
+       -d = delete user/group
+       -h = help
+       -r = delete password
+       -R = restrict acess to group to its members
+       - m = add members to group
+       -A = set list of adismistrator for group
+
+
+------------------------------------------------------------
+Acess modification/permissions for file/directory
+  r=4   {read/list content}
+  w=2  {write/create/remove }
+  x=1  {excute/open }
+
+chmod = change permission
+chown = change ownership 
+chgrp = change group
+
+?permission formate is as follows?
+d:rwx:r-x: r--2 root group 6June01 12:30 dirx 
+>>dir;owner;group;others
+
+-;rwx;r-x;r--1 root group 6June01 12:30 file
+>>file;owner;group;others
+
+?command example to change permissions?
+[ec2-user]#chmod 700 file1
+>>r4+w2+x1=7; r0+x0=0; r0=0>>700
+
+[ec2-user]#chmod u-wx,g+w,o=wx file1 {where u=user/owner,g=group,o=thers}
+
+[ec2-user]#chown new-owner file1
+[ec2-user]#chgrp new-group file2
+
+
+-----------------------------------------------------------
+
